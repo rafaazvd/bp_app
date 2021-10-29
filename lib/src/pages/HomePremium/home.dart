@@ -1,24 +1,25 @@
 import 'dart:ui';
 
+import 'package:bp_app/src/components/Courses/courses.dart';
 import 'package:bp_app/src/components/Documentaries/documentaries.dart';
+import 'package:bp_app/src/components/Lives/lives.dart';
+import 'package:bp_app/src/components/Podcasts/podcasts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class HomePage extends StatefulWidget {
+class HomePagePremium extends StatefulWidget {
   final String username;
-  const HomePage({Key? key, required this.username}) : super(key: key);
-
+  const HomePagePremium({Key? key, required this.username}) : super(key: key);
   @override
-  State<HomePage> createState() {
-    // ignore: no_logic_in_create_state
-    return HomePageState(username);
+  State<HomePagePremium> createState() {
+    return HomePagePremiumState(username);
   }
 }
 
-class HomePageState extends State<HomePage> {
+class HomePagePremiumState extends State<HomePagePremium> {
   final String username;
-  HomePageState(this.username);
+  HomePagePremiumState(this.username);
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -47,14 +48,35 @@ class HomePageState extends State<HomePage> {
                       Navigator.of(context).pushNamed('/documentaries');
                     },
                   ),
+                  ListTile(
+                    leading: Icon(Icons.contactless),
+                    title: Text('Lives'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/lives');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.mic_rounded),
+                    title: Text('Podcasts'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/podcasts');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.auto_stories),
+                    title: Text('Cursos'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/courses');
+                    },
+                  ),
                 ],
               ),
             ),
             Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.login_rounded),
-                  title: Text('Fazer Login'),
+                  leading: Icon(Icons.logout),
+                  title: Text('Sair'),
                   onTap: () {
                     Navigator.of(context).pushNamed('/login');
                   },
@@ -85,19 +107,40 @@ class HomePageState extends State<HomePage> {
               // fit: FlexFit.loose,
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Container(
-                  height: _screenSize.height * 0.26,
+                  height: _screenSize.height * 0.03,
                 ),
                 Text(
                   'Documentarios',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 22,
+                      fontSize: 17,
                       fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  height: _screenSize.height * 0.02,
-                ),
                 getDocumentaries(),
+                Text(
+                  'Lives',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getLives(),
+                Text(
+                  'Podcasts',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getPodcasts(),
+                Text(
+                  'Cursos',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getCourses(),
                 Container(
                   height: _screenSize.height * 0.02,
                 ),

@@ -1,3 +1,4 @@
+import 'package:bp_app/src/repositories/courses_repository.dart';
 import 'package:bp_app/src/services/models/courses.dart';
 import 'package:flutter/material.dart';
 
@@ -10,21 +11,23 @@ class getCourses extends StatefulWidget {
 }
 
 class getCoursesState extends State<getCourses> {
+  final coursesRepository = CoursesRepository();
+
   List<Widget> itemsData = [];
 
-  void getPostsData() {
-    List<dynamic> responseList = courses_data;
+  void getPostsData() async {
+    List<CoursesModel> responseList = await coursesRepository.fetchCourses();
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
         TextButton(
           onPressed: () {
-            print(post["link"]);
+            print(post.link);
           },
           child: SizedBox(
             width: 110,
             height: 150,
-            child: Image.asset(post["image"]),
+            child: Image.asset(post.image as String),
           ),
         ),
       );

@@ -1,9 +1,18 @@
-const courses_data = [
-  {"link": "www.bp.com", "image": "assets/images/curso1.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso2.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso3.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso4.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso5.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso6.png"},
-  {"link": "www.bp.com", "image": "assets/images/curso7.png"}
-];
+class CoursesModel {
+  String? link;
+  String? image;
+
+  CoursesModel({this.link, this.image});
+
+  CoursesModel.fromJson(Map<String, dynamic> json) {
+    link = json['link'];
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['link'] = this.link;
+    data['image'] = this.image;
+    return data;
+  }
+}
