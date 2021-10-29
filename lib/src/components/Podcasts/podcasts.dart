@@ -1,3 +1,4 @@
+import 'package:bp_app/src/controllers/webview_controller.dart';
 import 'package:bp_app/src/repositories/podcasts_repository.dart';
 import 'package:bp_app/src/services/models/podcasts.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ class getPodcastsState extends State<getPodcasts> {
       listItems.add(
         TextButton(
           onPressed: () {
-            print(post.link);
+            WebViewControllers.instance.changeLink(post.link);
+            Navigator.of(context).pushNamed('/screen');
           },
           child: SizedBox(
             width: 110,

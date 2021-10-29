@@ -7,6 +7,7 @@ import 'package:bp_app/src/pages/HomePremium/home.dart';
 import 'package:bp_app/src/pages/Lives/lives.dart';
 import 'package:bp_app/src/pages/Login/login.dart';
 import 'package:bp_app/src/pages/Podcasts/podcasts.dart';
+import 'package:bp_app/src/pages/WebView/webview.dart';
 import 'package:flutter/material.dart';
 
 class AppBp extends StatelessWidget {
@@ -46,6 +47,10 @@ class AppBp extends StatelessWidget {
                   ),
               '/documentaries': (context) => DocumentariesPage(
                     username: LoginController.instance.username,
+                  ),
+              '/screen': (context) => WebViewPage(
+                    username: LoginController.instance.username,
+                    type: LoginController.instance.type,
                   ),
             },
           );

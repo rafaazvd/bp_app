@@ -40,5 +40,5 @@ class AuthRepository {
 }
 
 const dataResponse =
-    '[{"token": "svn67gb8y8h7wc3nuhwcnhwn8hiaeuhcecc", "password": "1234567", "email": "rafa@mail.com", "name": "rafa azvd", "type": "premium"}]';
+    '[{"token": "svn67gb8y8h7wc3nuhwcnhwn8hiaeuhcecc", "password": "1234567", "email": "premium@mail.com", "name": "user premium", "type": "premium"}, {"token": "svn67gb8y8h7wc3nuhwcnshwn8hiaeuhcecc", "password": "1234567", "email": "patriots@mail.com", "name": "user patriots", "type": "patriots"}]';
 //   patriots, anonymous, premium, patron

@@ -30,4 +30,4 @@ class LivesRepository {
 }
 
 const data =
-    '[{"link": "www.bp.com", "image": "assets/images/live1.png"}, {"link": "www.bp.com", "image": "assets/images/live2.png"}, {"link": "www.bp.com", "image": "assets/images/live3.png"}, {"link": "www.bp.com", "image": "assets/images/live4.png"}, {"link": "www.bp.com", "image": "assets/images/live5.png"}, {"link": "www.bp.com", "image": "assets/images/live6.png"}]';
+    '[{"link": "https://www.youtube.com/embed/EEP1fZVUj84", "image": "assets/images/live1.png"}, {"link": "https://www.youtube.com/embed/GKdwTZ8JzlM", "image": "assets/images/live2.png"}, {"link": "https://www.youtube.com/embed/IjnVRejY_l4", "image": "assets/images/live3.png"}, {"link": "https://www.youtube.com/embed/OfrbP8RkETY", "image": "assets/images/live4.png"}, {"link": "https://www.youtube.com/embed/8ozIrnl8AO0", "image": "assets/images/live5.png"}, {"link": "https://www.youtube.com/embed/8ozIrnl8AO0", "image": "assets/images/live6.png"}]';
