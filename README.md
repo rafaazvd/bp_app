@@ -9,3 +9,14 @@ flutter pub get
 
 Execute o Projeto com:
 flutter run
+
+Login no app:
+
+usuário patriota:
+email: patriots@mail.com
+password: 1234567
+
+
+usuário premium:
+email: premium@mail.com
+password: 1234567
