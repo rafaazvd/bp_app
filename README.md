@@ -2,9 +2,9 @@
 
 A new Flutter project.
 
-## App Para menbros Brasil Paralelo
+## App Para membros Brasil Paralelo
 
-Baixe as dependencias
+Baixe as dependencias:
 flutter pub get
 
 Execute o Projeto com:
