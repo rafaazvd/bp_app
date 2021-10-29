@@ -20,3 +20,13 @@ password: 1234567
 usuário premium:
 email: premium@mail.com
 password: 1234567
+
+
+Executando Teste:
+
+### testando Login
+flutter test test/src/repositories/auth_repository_test.dart
+
+### testando Repositorios
+flutter test test/src/repositories/repositories_test.dart
+
