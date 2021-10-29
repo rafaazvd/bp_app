@@ -1,19 +1,23 @@
 import 'dart:ui';
 
 import 'package:bp_app/src/components/Podcasts/podcasts.dart';
+import 'package:bp_app/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class PodcastsPage extends StatefulWidget {
-  const PodcastsPage({Key? key}) : super(key: key);
+  final String username;
+  const PodcastsPage({Key? key, required this.username}) : super(key: key);
   @override
   State<PodcastsPage> createState() {
-    return PodcastsPageState();
+    return PodcastsPageState(username);
   }
 }
 
 class PodcastsPageState extends State<PodcastsPage> {
+  final String username;
+  PodcastsPageState(this.username);
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -32,7 +36,8 @@ class PodcastsPageState extends State<PodcastsPage> {
                     leading: Icon(Icons.home),
                     title: Text('Home'),
                     onTap: () {
-                      Navigator.of(context).pushNamed('/home');
+                      Navigator.of(context)
+                          .pushNamed('/home_' + LoginController.instance.type);
                     },
                   ),
                   ListTile(
@@ -72,6 +77,8 @@ class PodcastsPageState extends State<PodcastsPage> {
                   leading: Icon(Icons.logout),
                   title: Text('Sair'),
                   onTap: () {
+                    LoginController.instance.changeType('anonymous');
+                    LoginController.instance.changeName('Faça Login');
                     Navigator.of(context).pushNamed('/login');
                   },
                 ),
@@ -84,7 +91,7 @@ class PodcastsPageState extends State<PodcastsPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Jhon doe'),
+        title: Text(username),
         actions: [
           SizedBox(
             width: 44,

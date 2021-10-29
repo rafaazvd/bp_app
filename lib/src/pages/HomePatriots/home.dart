@@ -1,23 +1,26 @@
 import 'dart:ui';
 
+import 'package:bp_app/src/components/Coursespatriots/courses.dart';
 import 'package:bp_app/src/components/Documentaries/documentaries.dart';
+import 'package:bp_app/src/components/Lives/lives.dart';
+import 'package:bp_app/src/components/Podcasts/podcasts.dart';
 import 'package:bp_app/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class DocumentariesPage extends StatefulWidget {
+class HomePagePatriots extends StatefulWidget {
   final String username;
-  const DocumentariesPage({Key? key, required this.username}) : super(key: key);
+  const HomePagePatriots({Key? key, required this.username}) : super(key: key);
   @override
-  State<DocumentariesPage> createState() {
-    return DocumentariesPageState(username);
+  State<HomePagePatriots> createState() {
+    return HomePagePatriotsState(username);
   }
 }
 
-class DocumentariesPageState extends State<DocumentariesPage> {
+class HomePagePatriotsState extends State<HomePagePatriots> {
   final String username;
-  DocumentariesPageState(this.username);
+  HomePagePatriotsState(this.username);
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -36,8 +39,7 @@ class DocumentariesPageState extends State<DocumentariesPage> {
                     leading: Icon(Icons.home),
                     title: Text('Home'),
                     onTap: () {
-                      Navigator.of(context)
-                          .pushNamed('/home_' + LoginController.instance.type);
+                      Navigator.of(context).pushNamed('/home_patriots');
                     },
                   ),
                   ListTile(
@@ -47,33 +49,27 @@ class DocumentariesPageState extends State<DocumentariesPage> {
                       Navigator.of(context).pushNamed('/documentaries');
                     },
                   ),
-                  LoginController.instance.type != 'anonymous'
-                      ? ListTile(
-                          leading: Icon(Icons.contactless),
-                          title: Text('Lives'),
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/lives');
-                          },
-                        )
-                      : Text(''),
-                  LoginController.instance.type != 'anonymous'
-                      ? ListTile(
-                          leading: Icon(Icons.mic_rounded),
-                          title: Text('Podcasts'),
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/podcasts');
-                          },
-                        )
-                      : Text(''),
-                  LoginController.instance.type != 'anonymous'
-                      ? ListTile(
-                          leading: Icon(Icons.auto_stories),
-                          title: Text('Cursos'),
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/courses');
-                          },
-                        )
-                      : Text(''),
+                  ListTile(
+                    leading: Icon(Icons.contactless),
+                    title: Text('Lives'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/lives');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.mic_rounded),
+                    title: Text('Podcasts'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/podcasts');
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.auto_stories),
+                    title: Text('Cursos'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/courses');
+                    },
+                  ),
                 ],
               ),
             ),
@@ -108,12 +104,13 @@ class DocumentariesPageState extends State<DocumentariesPage> {
       ),
       body: Column(
           // direction: Axis.vertical,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Expanded(
               // fit: FlexFit.loose,
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Container(
-                  height: _screenSize.height * 0.2,
+                  height: _screenSize.height * 0.03,
                 ),
                 Text(
                   'Documentarios',
@@ -122,10 +119,31 @@ class DocumentariesPageState extends State<DocumentariesPage> {
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  height: _screenSize.height * 0.04,
-                ),
                 getDocumentaries(),
+                Text(
+                  'Lives',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getLives(),
+                Text(
+                  'Podcasts',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getPodcasts(),
+                Text(
+                  'Cursos',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
+                ),
+                getCoursesPatriots(),
                 Container(
                   height: _screenSize.height * 0.02,
                 ),

@@ -1,21 +1,22 @@
-import 'package:bp_app/src/repositories/podcasts_repository.dart';
-import 'package:bp_app/src/services/models/podcasts.dart';
+import 'package:bp_app/src/repositories/courses_repository.dart';
+import 'package:bp_app/src/services/models/courses.dart';
 import 'package:flutter/material.dart';
 
-class getPodcasts extends StatefulWidget {
-  const getPodcasts({Key? key}) : super(key: key);
+class getCoursesPatriots extends StatefulWidget {
+  const getCoursesPatriots({Key? key}) : super(key: key);
   @override
-  State<getPodcasts> createState() {
-    return getPodcastsState();
+  State<getCoursesPatriots> createState() {
+    return getCoursesPatriotsState();
   }
 }
 
-class getPodcastsState extends State<getPodcasts> {
-  final repository = PodcastsRepository();
+class getCoursesPatriotsState extends State<getCoursesPatriots> {
+  final coursesRepository = CoursesRepository();
+
   List<Widget> itemsData = [];
 
   void getPostsData() async {
-    List<PodcastsModel> responseList = await repository.fetchPodcasts();
+    List<CoursesModel> responseList = await coursesRepository.fetchCourses();
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
@@ -48,7 +49,7 @@ class getPodcastsState extends State<getPodcasts> {
           height: _screenSize.height * 0.15,
           child: ListView.builder(
             // controller: controller,
-            itemCount: itemsData.length,
+            itemCount: 2,
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,

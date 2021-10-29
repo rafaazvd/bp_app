@@ -4,6 +4,7 @@ import 'package:bp_app/src/components/Courses/courses.dart';
 import 'package:bp_app/src/components/Documentaries/documentaries.dart';
 import 'package:bp_app/src/components/Lives/lives.dart';
 import 'package:bp_app/src/components/Podcasts/podcasts.dart';
+import 'package:bp_app/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -38,7 +39,7 @@ class HomePagePremiumState extends State<HomePagePremium> {
                     leading: Icon(Icons.home),
                     title: Text('Home'),
                     onTap: () {
-                      Navigator.of(context).pushNamed('/home');
+                      Navigator.of(context).pushNamed('/home_premium');
                     },
                   ),
                   ListTile(
@@ -78,6 +79,8 @@ class HomePagePremiumState extends State<HomePagePremium> {
                   leading: Icon(Icons.logout),
                   title: Text('Sair'),
                   onTap: () {
+                    LoginController.instance.changeType('anonymous');
+                    LoginController.instance.changeName('Faça Login');
                     Navigator.of(context).pushNamed('/login');
                   },
                 ),

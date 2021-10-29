@@ -1,3 +1,4 @@
+import 'package:bp_app/src/controllers/login_controller.dart';
 import 'package:bp_app/src/pages/Home/home.dart';
 import 'package:bp_app/src/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
@@ -109,16 +110,26 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   onPressed: () async {
-                    final data = {"email": email, "password": password};
-                    final response = await authRepository.fetchAuth(data);
-                    if (response == []) {
-                      print('N');
+                    try {
+                      final data = {"email": email, "password": password};
+                      final response = await authRepository.fetchAuth(data);
+                      if (response[0].type == "premium") {
+                        Navigator.of(context).pushNamed('/home_premium');
+                        LoginController.instance.changeType(response[0].type);
+                        LoginController.instance.changeName(response[0].name);
+                      }
+                      if (response[0].type == "patriots") {
+                        Navigator.of(context).pushNamed('/home_patriots');
+                        LoginController.instance.changeType(response[0].type);
+                        LoginController.instance.changeName(response[0].name);
+                      }
+                      if (response[0].type == "patron") {
+                        Navigator.of(context).pushNamed('/home_patron');
+                        LoginController.instance.changeType(response[0].type);
+                        LoginController.instance.changeName(response[0].name);
+                      }
+                    } catch (e) {
                       _showMyDialog();
-                    }
-                    if (response[0].type == "premium") {
-                      print('S');
-                      Navigator.of(context).pushNamed('/home_premium',
-                          arguments: {"username": response[0].name});
                     }
                   },
                   child: Text('Entrar')),
@@ -135,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('AlertDialog Title'),
+          title: const Text('Erro no Login'),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
@@ -146,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text('Approve'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.of(context).pop();
               },

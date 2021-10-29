@@ -1,3 +1,4 @@
+import 'package:bp_app/src/repositories/lives_repository.dart';
 import 'package:bp_app/src/services/models/lives.dart';
 import 'package:flutter/material.dart';
 
@@ -10,21 +11,22 @@ class getLives extends StatefulWidget {
 }
 
 class getLivesState extends State<getLives> {
+  final repository = LivesRepository();
   List<Widget> itemsData = [];
 
-  void getPostsData() {
-    List<dynamic> responseList = lives_data;
+  void getPostsData() async {
+    List<LivesModel> responseList = await repository.fetchLives();
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
         TextButton(
           onPressed: () {
-            print(post["link"]);
+            print(post.link);
           },
           child: SizedBox(
             width: 110,
             height: 150,
-            child: Image.asset(post["image"]),
+            child: Image.asset(post.image as String),
           ),
         ),
       );

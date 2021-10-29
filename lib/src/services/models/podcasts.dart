@@ -1,8 +1,18 @@
-const podcasts_data = [
-  {"link": "www.bp.com", "image": "assets/images/pod1.png"},
-  {"link": "www.bp.com", "image": "assets/images/pod2.png"},
-  {"link": "www.bp.com", "image": "assets/images/pod3.png"},
-  {"link": "www.bp.com", "image": "assets/images/pod4.png"},
-  {"link": "www.bp.com", "image": "assets/images/pod5.png"},
-  {"link": "www.bp.com", "image": "assets/images/pod6.png"}
-];
+class PodcastsModel {
+  String? link;
+  String? image;
+
+  PodcastsModel({this.link, this.image});
+
+  PodcastsModel.fromJson(Map<String, dynamic> json) {
+    link = json['link'];
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['link'] = this.link;
+    data['image'] = this.image;
+    return data;
+  }
+}

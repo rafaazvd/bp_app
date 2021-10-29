@@ -1,19 +1,27 @@
 import 'dart:ui';
 
 import 'package:bp_app/src/components/Courses/courses.dart';
+import 'package:bp_app/src/components/Coursespatriots/courses.dart';
+import 'package:bp_app/src/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class CoursesPage extends StatefulWidget {
-  const CoursesPage({Key? key}) : super(key: key);
+  final String username;
+  final String type;
+  const CoursesPage({Key? key, required this.username, required this.type})
+      : super(key: key);
   @override
   State<CoursesPage> createState() {
-    return CoursesPageState();
+    return CoursesPageState(username, type);
   }
 }
 
 class CoursesPageState extends State<CoursesPage> {
+  final String username;
+  final String type;
+  CoursesPageState(this.username, this.type);
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -32,7 +40,8 @@ class CoursesPageState extends State<CoursesPage> {
                     leading: Icon(Icons.home),
                     title: Text('Home'),
                     onTap: () {
-                      Navigator.of(context).pushNamed('/home');
+                      Navigator.of(context)
+                          .pushNamed('/home_' + LoginController.instance.type);
                     },
                   ),
                   ListTile(
@@ -42,27 +51,33 @@ class CoursesPageState extends State<CoursesPage> {
                       Navigator.of(context).pushNamed('/documentaries');
                     },
                   ),
-                  ListTile(
-                    leading: Icon(Icons.contactless),
-                    title: Text('Lives'),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/lives');
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.mic_rounded),
-                    title: Text('Podcasts'),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/podcasts');
-                    },
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.auto_stories),
-                    title: Text('Cursos'),
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/courses');
-                    },
-                  ),
+                  LoginController.instance.type != 'anonymous'
+                      ? ListTile(
+                          leading: Icon(Icons.contactless),
+                          title: Text('Lives'),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/lives');
+                          },
+                        )
+                      : Text(''),
+                  LoginController.instance.type != 'anonymous'
+                      ? ListTile(
+                          leading: Icon(Icons.mic_rounded),
+                          title: Text('Podcasts'),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/podcasts');
+                          },
+                        )
+                      : Text(''),
+                  LoginController.instance.type != 'anonymous'
+                      ? ListTile(
+                          leading: Icon(Icons.auto_stories),
+                          title: Text('Cursos'),
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/courses');
+                          },
+                        )
+                      : Text(''),
                 ],
               ),
             ),
@@ -72,6 +87,8 @@ class CoursesPageState extends State<CoursesPage> {
                   leading: Icon(Icons.logout),
                   title: Text('Sair'),
                   onTap: () {
+                    LoginController.instance.changeType('anonymous');
+                    LoginController.instance.changeName('Faça Login');
                     Navigator.of(context).pushNamed('/login');
                   },
                 ),
@@ -84,7 +101,7 @@ class CoursesPageState extends State<CoursesPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Jhon doe'),
+        title: Text(username),
         actions: [
           SizedBox(
             width: 44,
@@ -112,7 +129,7 @@ class CoursesPageState extends State<CoursesPage> {
                 Container(
                   height: _screenSize.height * 0.04,
                 ),
-                getCourses(),
+                type == 'patriots' ? getCoursesPatriots() : getCourses(),
                 Container(
                   height: _screenSize.height * 0.02,
                 ),

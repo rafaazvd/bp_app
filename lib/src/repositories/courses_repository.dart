@@ -7,13 +7,13 @@ class ClientMock extends Mock implements http.Client {}
 
 class CoursesRepository {
   final client = ClientMock();
-  void testMeth() {
+  void loadData() {
     when(() => client.get(Uri.parse('/')))
         .thenAnswer((invocation) async => http.Response(data, 200));
   }
 
   Future<List<CoursesModel>> fetchCourses() async {
-    testMeth();
+    loadData();
     final response = await client.get(Uri.parse('/'));
     if (response.statusCode == 200) {
       final list = jsonDecode(response.body) as List;

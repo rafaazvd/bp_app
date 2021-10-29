@@ -1,3 +1,4 @@
+import 'package:bp_app/src/repositories/documentaries_repository.dart';
 import 'package:bp_app/src/services/models/documentaries.dart';
 import 'package:flutter/material.dart';
 
@@ -10,21 +11,23 @@ class getDocumentaries extends StatefulWidget {
 }
 
 class getDocumentariesState extends State<getDocumentaries> {
+  final repository = DocumentariesRepository();
   List<Widget> itemsData = [];
 
-  void getPostsData() {
-    List<dynamic> responseList = content_data;
+  void getPostsData() async {
+    List<DocumentariesModel> responseList =
+        await repository.fetchDocumentaries();
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(
         TextButton(
           onPressed: () {
-            print(post["link"]);
+            print(post.link);
           },
           child: SizedBox(
             width: 110,
             height: 150,
-            child: Image.asset(post["image"]),
+            child: Image.asset(post.image as String),
           ),
         ),
       );
